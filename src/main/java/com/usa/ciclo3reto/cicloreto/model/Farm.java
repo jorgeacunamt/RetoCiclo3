@@ -11,6 +11,7 @@ import java.util.List;
 public class Farm implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    //@Column(name = "IdFarm")
     private Integer id;
     private String address;
     private Double extension;

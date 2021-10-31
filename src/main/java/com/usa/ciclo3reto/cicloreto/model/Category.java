@@ -11,7 +11,8 @@ import java.util.List;
 public class Category implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    //@Column(name = "idCategory")
+    private Integer idCategory;
     private String name;
     private String description;
 
@@ -20,11 +21,11 @@ public class Category implements Serializable {
     private List<Farm>farms;
 
     public Integer getId() {
-        return id;
+        return idCategory;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setId(Integer idCategory) {
+        this.idCategory = idCategory;
     }
 
     public String getName() {
