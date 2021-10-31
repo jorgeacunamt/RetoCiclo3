@@ -14,7 +14,7 @@ public class Farm implements Serializable {
     private Integer id;
     private String name;
     private String address;
-    private Double extension;
+    private Integer extension;
     private String description;
 
 
@@ -55,11 +55,11 @@ public class Farm implements Serializable {
         this.address = address;
     }
 
-    public Double getExtension() {
+    public Integer getExtension() {
         return extension;
     }
 
-    public void setExtension(Double extension) {
+    public void setExtension(Integer extension) {
         this.extension = extension;
     }
 
