@@ -36,12 +36,37 @@ public class FarmService {
 
     public Farm update(Farm farm){
         if(farm.getId()!=null){
-            Optional<Farm> tmpFarm=farmRepository.getFarm(farm.getId());
-            if(!tmpFarm.isEmpty()){
-                return farmRepository.save(farm);
+            Optional<Farm> e=farmRepository.getFarm(farm.getId());
+            if(!e.isEmpty()){
+                if(farm.getName()!=null){
+                    e.get().setName(farm.getName());
+                }
+                if(farm.getDescription()!=null){
+                    e.get().setDescription(farm.getDescription()); ;
+                }
+                if(farm.getCategory() !=null){
+                    e.get().setCategory(farm.getCategory());
+                }
+                if(farm.getMessages()!=null){
+                    e.get().setMessages(farm.getMessages());
+                }
+                if(farm.getAddress()!=null){
+                    e.get().setAddress(farm.getAddress());
+                }
+                if(farm.getExtension()!=null){
+                    e.get().setExtension(farm.getExtension());
+                }
+                if(farm.getReservations()!=null){
+                    e.get().setReservations(farm.getReservations());
+                }
+                farmRepository.save(e.get());
+                return e.get();
+            }else{
+                return farm;
             }
+        }else{
+            return farm;
         }
-        return null;
     }
 
     public boolean deleteFarm(int id){

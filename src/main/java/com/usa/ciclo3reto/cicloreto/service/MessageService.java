@@ -35,13 +35,21 @@ public class MessageService {
     }
 
     public Message update(Message message){
-        if (message.getId()!=null){
-            Optional<Message> tmpMessage=messageRepository.getMessage(message.getId());
-            if (!tmpMessage.isEmpty()){
-                return messageRepository.save(message);
+        if (message.getId()!= null) {
+            Optional<Message> e = messageRepository.getMessage(message.getId());
+            if (!e.isEmpty()) {
+                if (message.getMessageText()!= null) {
+                    e.get().setMessageText(message.getMessageText());
+                }
+                messageRepository.save(e.get());
+                return e.get();
+
+            } else {
+                return message;
             }
+        } else {
+            return message;
         }
-        return null;
     }
 
     public boolean deleteMessage(int id){
