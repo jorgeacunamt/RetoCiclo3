@@ -12,10 +12,10 @@ public class Farm implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    private String address;
-    private Double extension;
     private String name;
+    private String address;
     private String description;
+    private Double extension;
 
     @ManyToOne
     @JoinColumn(name = "idCategory")
@@ -38,22 +38,6 @@ public class Farm implements Serializable {
         this.id = id;
     }
 
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
-    public Double getExtension() {
-        return extension;
-    }
-
-    public void setExtension(Double extension) {
-        this.extension = extension;
-    }
-
     public String getName() {
         return name;
     }
@@ -62,12 +46,28 @@ public class Farm implements Serializable {
         this.name = name;
     }
 
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
     public String getDescription() {
         return description;
     }
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public Double getExtension() {
+        return extension;
+    }
+
+    public void setExtension(Double extension) {
+        this.extension = extension;
     }
 
     public Category getCategory() {
