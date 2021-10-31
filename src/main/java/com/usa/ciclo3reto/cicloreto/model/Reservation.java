@@ -10,7 +10,6 @@ import java.util.Date;
 public class Reservation {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    //@Column(name = "idReservation")
     private Integer idReservation;
     private Date startDate;
     private Date devolutionDate;
@@ -28,11 +27,11 @@ public class Reservation {
 
     private String score;
 
-    public Integer getId() {
+    public Integer getIdReservation() {
         return idReservation;
     }
 
-    public void setId(Integer idReservation) {
+    public void setIdReservation(Integer idReservation) {
         this.idReservation = idReservation;
     }
 

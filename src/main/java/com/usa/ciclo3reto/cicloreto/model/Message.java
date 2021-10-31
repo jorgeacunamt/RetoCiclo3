@@ -9,7 +9,6 @@ import javax.persistence.*;
 public class Message {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    //@Column(name = "idMessage")
     private Integer idMessage;
     private String messageText;
 
@@ -23,11 +22,11 @@ public class Message {
     @JsonIgnoreProperties({"messages","client", "reservations"})
     private Client client;
 
-    public Integer getId() {
+    public Integer getIdMessage() {
         return idMessage;
     }
 
-    public void setId(Integer idMessage) {
+    public void setIdMessage(Integer idMessage) {
         this.idMessage = idMessage;
     }
 
