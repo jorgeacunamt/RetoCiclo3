@@ -55,20 +55,20 @@ public class Farm implements Serializable {
         this.address = address;
     }
 
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
     public Double getExtension() {
         return extension;
     }
 
     public void setExtension(Double extension) {
         this.extension = extension;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public Category getCategory() {
