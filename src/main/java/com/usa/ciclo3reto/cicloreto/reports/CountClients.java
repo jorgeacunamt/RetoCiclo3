@@ -7,12 +7,7 @@ public class CountClients {
     private Long total;
     private Client client;
 
-    public CountClients(Long total, Client client) {
-        this.total = total;
-        this.client = client;
-    }
-
-    public double getTotal() {
+    public Long getTotal() {
         return total;
     }
 
@@ -27,4 +22,12 @@ public class CountClients {
     public void setClient(Client client) {
         this.client = client;
     }
+
+    public CountClients(Long total, Client client) {
+        this.total = total;
+        this.client = client;
+    }
+
+
+
 }

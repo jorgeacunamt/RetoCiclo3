@@ -3,7 +3,7 @@ package com.usa.ciclo3reto.cicloreto.reports;
 public class ReservationStatus {
 
     private Integer completed;
-    private Integer canceled;
+    private Integer cancelled;
 
     public Integer getCompleted() {
         return completed;
@@ -14,15 +14,15 @@ public class ReservationStatus {
     }
 
     public Integer getCanceled() {
-        return canceled;
+        return cancelled;
     }
 
-    public void setCanceled(Integer canceled) {
-        this.canceled = canceled;
+    public void setCanceled(Integer cancelled) {
+        this.cancelled = cancelled;
     }
 
-    public ReservationStatus(Integer completed, Integer canceled) {
+    public ReservationStatus(Integer completed, Integer cancelled) {
         this.completed = completed;
-        this.canceled = canceled;
+        this.cancelled = cancelled;
     }
 }
