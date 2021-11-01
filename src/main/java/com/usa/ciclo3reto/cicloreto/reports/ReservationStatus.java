@@ -13,11 +13,11 @@ public class ReservationStatus {
         this.completed = completed;
     }
 
-    public Integer getCanceled() {
+    public Integer getCancelled() {
         return cancelled;
     }
 
-    public void setCanceled(Integer cancelled) {
+    public void setCancelled(Integer cancelled) {
         this.cancelled = cancelled;
     }
 
