@@ -1,10 +1,15 @@
 package com.usa.ciclo3reto.cicloreto.service;
 
 import com.usa.ciclo3reto.cicloreto.model.Reservation;
+import com.usa.ciclo3reto.cicloreto.reports.CountClients;
+import com.usa.ciclo3reto.cicloreto.reports.ReservationStatus;
 import com.usa.ciclo3reto.cicloreto.repository.ReservationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -13,28 +18,28 @@ public class ReservationService {
     @Autowired
     private ReservationRepository reservationRepository;
 
-    public List<Reservation> getAll(){
+    public List<Reservation> getAll() {
         return reservationRepository.getAll();
     }
 
-    public Optional<Reservation> getReservation(int id){
+    public Optional<Reservation> getReservation(int id) {
         return reservationRepository.getReservation(id);
     }
 
-    public Reservation save(Reservation reservation){
-        if(reservation.getIdReservation()==null){
+    public Reservation save(Reservation reservation) {
+        if (reservation.getIdReservation() == null) {
             return reservationRepository.save(reservation);
-        }else {
-            Optional<Reservation> tmpReservation=reservationRepository.getReservation((reservation.getIdReservation()));
-            if (tmpReservation.isEmpty()){
+        } else {
+            Optional<Reservation> tmpReservation = reservationRepository.getReservation((reservation.getIdReservation()));
+            if (tmpReservation.isEmpty()) {
                 return reservationRepository.save(reservation);
-            }else {
+            } else {
                 return reservation;
             }
         }
     }
 
-    public Reservation update(Reservation reservation){
+    public Reservation update(Reservation reservation) {
         if (reservation.getIdReservation() != null) {
             Optional<Reservation> e = reservationRepository.getReservation(reservation.getIdReservation());
             if (!e.isEmpty()) {
@@ -58,12 +63,37 @@ public class ReservationService {
         }
     }
 
-    public boolean deleteReservation(int id){
-        Boolean aBoolean=getReservation(id).map(reservation -> {
+    public boolean deleteReservation(int id) {
+        Boolean aBoolean = getReservation(id).map(reservation -> {
             reservationRepository.delete(reservation);
             return true;
         }).orElse(false);
         return aBoolean;
     }
+
+    public ReservationStatus getReservationStatusReport() {
+        List<Reservation> completed = reservationRepository.getReservationByStatus("completed");
+        List<Reservation> cancelled = reservationRepository.getReservationByStatus("cancelled");
+        return new ReservationStatus(completed.size(), cancelled.size());
+    }
+
+    public List<Reservation> getReservationPeriod(String dateOne, String dateTwo) {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        try {
+            Date startDate = dateFormat.parse(dateOne);
+            Date devolutionDate = dateFormat.parse(dateTwo);
+            if (startDate.before(devolutionDate)) {
+                return reservationRepository.getReservationPeriod(startDate, devolutionDate);
+            }
+        } catch (Exception exception) {
+            exception.printStackTrace();
+        }
+        return new ArrayList<>();
+    }
+
+    public List<CountClients> getTopClient() {
+        return reservationRepository.getTopClients();
+    }
+
 
 }
